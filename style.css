@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body,
 html {
   font-family: fantasy;
@@ -10,6 +11,7 @@ html {
   height: 100%;
   font-size: 10px;
 }
+
 header {
   display: flex;
   justify-content: space-evenly;
@@ -18,9 +20,11 @@ header {
   height: 20vh;
   font-size: 1vw;
 }
+
 input {
-  height: 2rem;
+  height: 4rem;
 }
+
 .table {
   background-color: aquamarine;
   display: flex;
@@ -31,7 +35,36 @@ input {
   height: 75vh;
   border: 1px solid black;
 }
+
+.row{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  align-content: flex-start;
+  width: 100%;
+  height: 5%;
+  margin: 1rem;
+  font-size: 1.5vw;
+}
+.row>div{
+  height: 5rem;
+  /* width:10rem; */
+  vertical-align: middle;
+  
+}
+
 .title {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  align-content: flex-start;
+  width: 100%;
+  height: 5%;
+  margin: 1rem;
+  font-size: 1.5vw;
+}
+
+.row {
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
