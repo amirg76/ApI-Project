@@ -21,7 +21,7 @@ header {
   font-size: 1vw;
 }
 
-input {
+header > input {
   height: 4rem;
 }
 
@@ -43,17 +43,21 @@ input {
   align-content: flex-start;
   width: 100%;
   height: 5%;
-  margin: 1rem;
+
+  /* margin: 0rem; */
+  /* font-size: 1.5vw; */
+  text-align: left;
+  border: 1px solid black;
 
   text-align: left;
 }
 .cell {
   height: 5rem;
-  width: 1vw;
   font-size: 1vw;
-
-  /* margin: 1rem; */
+  width: 10rem;
   text-align: left;
+  /* padding:1rem; */
+  /* max-width: max-content; */
 }
 .hidden {
   visibility: hidden;
@@ -64,6 +68,10 @@ input {
 }
 .capsule {
   /* margin-bottom: 1rem; */
+}
+
+.capsule {
+  margin-bottom: 0.5 rem;
 }
 
 .title {
@@ -78,7 +86,8 @@ input {
   background-color: blueviolet;
 }
 .title > div {
-  margin: 0 rem;
+  /* margin-left: 10rem;
+  margin-right: 4rem; */
 }
 .row {
   display: flex;
@@ -90,4 +99,7 @@ input {
   margin: 0.5rem 1rem;
 
   font-size: 1.5vw;
+}
+
+.row > input {
 }

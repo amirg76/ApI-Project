@@ -52,9 +52,13 @@ const addRow = (arrOfAttributes) => {
   const table = document.querySelector(".table");
   const row = document.createElement("div");
   row.classList.add("row");
+  row.setAttribute("id", arrOfAttributes[0]);
+
   arrOfAttributes.forEach((e) => {
     const cell = document.createElement("div");
     cell.classList.add("cell");
+
+    // cell.classList.add(e);
     cell.textContent = e;
 
     row.appendChild(cell);
@@ -63,9 +67,15 @@ const addRow = (arrOfAttributes) => {
   const deleteButton = document.createElement("button");
   editButton.classList.add("editButton");
   editButton.textContent = "Edit";
+  editButton.setAttribute("id", arrOfAttributes[0]);
+
   deleteButton.textContent = "Delete";
   deleteButton.classList.add("deleteButton");
-  deleteButton.addEventListener("click",deleteRow);
+  deleteButton.setAttribute("id", arrOfAttributes[0]);
+
+  deleteButton.addEventListener("click", deleteRow);
+  editCell();
+
   row.appendChild(editButton);
   row.appendChild(deleteButton);
 
@@ -89,11 +99,66 @@ const drawTable = (arrOfData) => {
 };
 
 const paintPage = async () => {
-  drawTable(await arrOfTwoGroups());
+  const mainArr = await arrOfTwoGroups();
+  drawTable(mainArr);
+  sortColumn(mainArr);
 };
 paintPage();
 
-const deleteRow=(e)=>{
-console.log(e.target);
+// const deleteRow = (e) => {
+//   const clickedButton=e.target;
+//   console.log(e.target);
+//   const id=clickedButton.getAttribute('id');
+//   console.log("parent:"+e.target.parentElement.getAttribute("e"));
+//   const rows = document.querySelector(".row");
+//   relevantRow=row.getElementById(id);
+//   console.log(row);
+// const table = document.querySelector(".table");
+// table.removeChild(row);
+//   // if(row)
+// };
+const deleteRow = () => {
+  const rows = document.querySelectorAll(".row");
+  rows.forEach((e) => {
+    e.addEventListener("click", (e) => {
+      if (e.target.classList.contains("deleteButton"))
+        e.currentTarget.style.display = "none";
+      console.log(e.target.classList.contains("deleteButton"));
+    });
+  });
+};
 
+const editCell = () => {
+  const rows = document.querySelectorAll(".row");
+  rows.forEach((e) => {
+    e.addEventListener("click", (e) => {
+      if (e.target.classList.contains("editButton"))
+        e.currentTarget.addEventListener("click", (e) => {
+          e.target.innerHTML = `<input type=text/>`;
+        });
+    });
+  });
+};
+
+const sortColumn = (mainArr) => {
+  let tempArr = [];
+  const divs = [...document.querySelectorAll(".title div")];
+  console.log(divs);
+  const rows = [...document.querySelectorAll(".row")];
+  console.log(rows);
+  divs.forEach((divElemnet) => {
+    divElemnet.addEventListener("click", function (e) {
+      const specificTilteClass = e.target.className;
+      console.log(specificTilteClass);
+
+      rows.forEach((row) => {
+        console.log(row);
+        const specificTilteClass = e.target.className;
+        // if(row.className===)
+        tempArr.push(row[index]);
+      });
+      tempArr.sort();
+      console.log(tempArr);
+    });
+  });
 };
