@@ -45,12 +45,19 @@ input {
   height: 5%;
   margin: 1rem;
   font-size: 1.5vw;
+  text-align: left;
+
 }
-.row>div{
+.cell{
   height: 5rem;
   /* width:10rem; */
-  vertical-align: middle;
-  
+  text-align: left;
+}
+.hidden{
+  visibility: hidden;
+}
+.editButton,.deleteButton{
+  cursor: pointer;
 }
 
 .title {
