@@ -53,9 +53,12 @@ const addRow = (arrOfAttributes) => {
   const row = document.createElement("div");
   row.classList.add("row");
   row.setAttribute("id", arrOfAttributes[0]);
+
   arrOfAttributes.forEach((e) => {
     const cell = document.createElement("div");
     cell.classList.add("cell");
+
+    // cell.classList.add(e);
     cell.textContent = e;
 
     row.appendChild(cell);
@@ -96,7 +99,9 @@ const drawTable = (arrOfData) => {
 };
 
 const paintPage = async () => {
-  drawTable(await arrOfTwoGroups());
+  const mainArr = await arrOfTwoGroups();
+  drawTable(mainArr);
+  sortColumn(mainArr);
 };
 paintPage();
 
@@ -131,6 +136,29 @@ const editCell = () => {
         e.currentTarget.addEventListener("click", (e) => {
           e.target.innerHTML = `<input type=text/>`;
         });
+    });
+  });
+};
+
+const sortColumn = (mainArr) => {
+  let tempArr = [];
+  const divs = [...document.querySelectorAll(".title div")];
+  console.log(divs);
+  const rows = [...document.querySelectorAll(".row")];
+  console.log(rows);
+  divs.forEach((divElemnet) => {
+    divElemnet.addEventListener("click", function (e) {
+      const specificTilteClass = e.target.className;
+      console.log(specificTilteClass);
+
+      rows.forEach((row) => {
+        console.log(row);
+        const specificTilteClass = e.target.className;
+        // if(row.className===)
+        tempArr.push(row[index]);
+      });
+      tempArr.sort();
+      console.log(tempArr);
     });
   });
 };
