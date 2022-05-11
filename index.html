@@ -4,10 +4,43 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./normalize.css" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
   </head>
   <body>
-    <h1>HELOO</h1>
+    <header>
+      <h1>My Capsule</h1>
+      <div class="search">
+        <input type="text" placeholder="Search..." />
+        <select name="option" id="option">
+          <option value="everything">everything</option>
+          <option value="Id">id</option>
+          <option value="Name">Name</option>
+          <option value="LastName">Last Name</option>
+          <option value="Hobby">Hobby</option>
+          <option value="Age">Age</option>
+          <option value="City">City</option>
+          <option value="Gender">Gender</option>
+          <option value="Capsule">Capsule</option>
+        </select>
+      </div>
+      <button>RESTART</button>
+    </header>
+
+    <div class="table">
+      <div class="title">
+        <div class="id">Id</div>
+        <div class="name">Name</div>
+        <div class="lastName">Last Name</div>
+        <div class="hobby">Hobby</div>
+        <div class="age">Age</div>
+        <div class="city">City</div>
+        <div class="gender">Gender</div>
+        <div class="capsule">Capsule</div>
+      </div>
+    </div>
+
     <script src="/app.js"></script>
   </body>
 </html>
