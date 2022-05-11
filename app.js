@@ -48,34 +48,36 @@ arrOfTwoGroups();
 //     titleBox.textContent = title;
 //     container.appendChild(titleBox);
 //   };
-const addRow = (arrOfData) => {
-  const table=document.querySelector('.table');
+const addRow = (arrOfAttributes) => {
+  const table = document.querySelector(".table");
   const row = document.createElement("div");
   row.classList.add("row");
-  arrOfData.forEach((e) => {
+  arrOfAttributes.forEach((e) => {
     const cell = document.createElement("div");
     cell.classList.add("cell");
     cell.textContent = e;
+
     row.appendChild(cell);
   });
+  const editButton = document.createElement("button");
+  const deleteButton = document.createElement("button");
+  editButton.classList.add("editButton");
+  editButton.textContent = "Edit";
+  deleteButton.textContent = "Delete";
+  deleteButton.classList.add("deleteButton");
+  deleteButton.addEventListener("click",deleteRow);
+  row.appendChild(editButton);
+  row.appendChild(deleteButton);
+
   table.appendChild(row);
 };
 const drawTable = (arrOfData) => {
   console.log(arrOfData);
-  addRow([
-    "id",
-    "name",
-    "lastName",
-    "hobby",
-    "age",
-    "city",
-    "gender",
-    "capsule",
-  ]);
+
   arrOfData.forEach((e) => {
     addRow([
       e.id,
-      e.name,
+      e.firstName,
       e.lastName,
       e.hobby,
       e.age,
@@ -91,3 +93,7 @@ const paintPage = async () => {
 };
 paintPage();
 
+const deleteRow=(e)=>{
+console.log(e.target);
+
+};
