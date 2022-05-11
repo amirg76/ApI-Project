@@ -48,21 +48,29 @@ arrOfTwoGroups();
 //     titleBox.textContent = title;
 //     container.appendChild(titleBox);
 //   };
-const addRow = (arrOfAttributes) => {
+const addRow = (arrOfAttributes, arrayOfKeys) => {
   const table = document.querySelector(".table");
   const row = document.createElement("div");
   row.classList.add("row");
   row.setAttribute("id", arrOfAttributes[0]);
-
-  arrOfAttributes.forEach((e) => {
+  for (let index = 0; index < arrOfAttributes.length; index++) {
+    const attribute = arrOfAttributes[index];
     const cell = document.createElement("div");
     cell.classList.add("cell");
-
-    // cell.classList.add(e);
-    cell.textContent = e;
-
+    cell.classList.add(arrayOfKeys[index]);
+    cell.textContent = attribute;
     row.appendChild(cell);
-  });
+  }
+
+  //   arrOfAttributes.forEach((e) => {
+  //     const cell = document.createElement("div");
+  //     cell.classList.add("cell");
+  // cell.setAttribute("id", arrayOfKeys[])
+  //     // cell.classList.add(e);
+  //     cell.textContent = e;
+
+  //     row.appendChild(cell);
+  //   });
   const editButton = document.createElement("button");
   const deleteButton = document.createElement("button");
   editButton.classList.add("editButton");
@@ -85,16 +93,19 @@ const drawTable = (arrOfData) => {
   console.log(arrOfData);
 
   arrOfData.forEach((e) => {
-    addRow([
-      e.id,
-      e.firstName,
-      e.lastName,
-      e.hobby,
-      e.age,
-      e.city,
-      e.gender,
-      e.capsule,
-    ]);
+    addRow(
+      [
+        e.id,
+        e.firstName,
+        e.lastName,
+        e.hobby,
+        e.age,
+        e.city,
+        e.gender,
+        e.capsule,
+      ],
+      Object.keys(e)
+    );
   });
 };
 
@@ -142,23 +153,46 @@ const editCell = () => {
 
 const sortColumn = (mainArr) => {
   let tempArr = [];
-  const divs = [...document.querySelectorAll(".title div")];
-  console.log(divs);
-  const rows = [...document.querySelectorAll(".row")];
-  console.log(rows);
-  divs.forEach((divElemnet) => {
-    divElemnet.addEventListener("click", function (e) {
-      const specificTilteClass = e.target.className;
-      console.log(specificTilteClass);
+  // const titles = [...document.querySelectorAll(".title div")];
+  const titles = document.querySelectorAll(".title div");
 
-      rows.forEach((row) => {
-        console.log(row);
-        const specificTilteClass = e.target.className;
-        // if(row.className===)
-        tempArr.push(row[index]);
-      });
+  console.log(titles);
+
+  // const rows = [...document.querySelectorAll(".row")];
+  const rows = document.querySelectorAll(".row");
+
+  console.log("rows:"+rows);
+  titles.forEach((title) => {
+    title.addEventListener("click", function (e) {
+      const specificTitleClass = e.target.className;
+      // console.log(specificTitleClass);
+for (let index = 0; index < mainArr.length; index++) {
+  let row=rows.childNodes[index];
+  console.log("row"+row);
+  const relevantCell=row.getElementsByClassName(`${specificTitleClass}`);
+  console.log("relevantCell"+relevantCell);
+  if( specificTitleClass === relevantCell.className){ tempArr.push(relevantCell);
+    console.log("relevantCell:"+relevantCell);
+    }
+}
+      
+      // forEach((row) => {
+      //   const relevantCell=row.getElementsByClassName(`${specificTitleClass}`);
+      //   console.log("relevantCell"+relevantCell);
+      //   children=[...row.children];
+      //   children.forEach(
+      //   ((column) => {
+      //   // console.log(row);
+      //   if( specificTitleClass === column.className){ tempArr.push(column);
+      //   console.log("column:"+column);
+      //   }
+      //   // if(row.className===)
+      //   // console.log("***"+specificTitleClass);
+
+      //  }))
+      // });
       tempArr.sort();
-      console.log(tempArr);
+      // console.log(tempArr);
     });
   });
 };
