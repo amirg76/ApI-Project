@@ -1,5 +1,3 @@
-/////getFetchedData
-
 const getFetchedData = async (url) => {
   try {
     const response = await fetch(url);
@@ -13,7 +11,6 @@ const getFetchedData = async (url) => {
 };
 
 getFetchedData("https://capsules-asb6.herokuapp.com/api/teacher/mordi");
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 async function arrOfTwoGroups() {
   try {
@@ -40,14 +37,7 @@ async function arrOfTwoGroups() {
   }
 }
 arrOfTwoGroups();
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// const addTitleRow = (title) => {
-//     const titleBox = document.createElement('div');
-//     titleBox.classList.add('row');
-//     titleBox.textContent = title;
-//     container.appendChild(titleBox);
-//   };
 const addRow = (arrOfAttributes, arrayOfKeys) => {
   const table = document.querySelector(".table");
   const row = document.createElement("div");
@@ -62,15 +52,6 @@ const addRow = (arrOfAttributes, arrayOfKeys) => {
     row.appendChild(cell);
   }
 
-  //   arrOfAttributes.forEach((e) => {
-  //     const cell = document.createElement("div");
-  //     cell.classList.add("cell");
-  // cell.setAttribute("id", arrayOfKeys[])
-  //     // cell.classList.add(e);
-  //     cell.textContent = e;
-
-  //     row.appendChild(cell);
-  //   });
   const editButton = document.createElement("button");
   const deleteButton = document.createElement("button");
   editButton.classList.add("editButton");
@@ -112,22 +93,11 @@ const drawTable = (arrOfData) => {
 const paintPage = async () => {
   const mainArr = await arrOfTwoGroups();
   drawTable(mainArr);
+
   sortColumn(mainArr);
 };
 paintPage();
 
-// const deleteRow = (e) => {
-//   const clickedButton=e.target;
-//   console.log(e.target);
-//   const id=clickedButton.getAttribute('id');
-//   console.log("parent:"+e.target.parentElement.getAttribute("e"));
-//   const rows = document.querySelector(".row");
-//   relevantRow=row.getElementById(id);
-//   console.log(row);
-// const table = document.querySelector(".table");
-// table.removeChild(row);
-//   // if(row)
-// };
 const deleteRow = () => {
   const rows = document.querySelectorAll(".row");
   rows.forEach((e) => {
@@ -153,46 +123,44 @@ const editCell = () => {
 
 const sortColumn = (mainArr) => {
   let tempArr = [];
-  // const titles = [...document.querySelectorAll(".title div")];
   const titles = document.querySelectorAll(".title div");
-
   console.log(titles);
-
-  // const rows = [...document.querySelectorAll(".row")];
   const rows = document.querySelectorAll(".row");
-
-  console.log("rows:"+rows);
+  console.log("rows:" + rows);
   titles.forEach((title) => {
     title.addEventListener("click", function (e) {
       const specificTitleClass = e.target.className;
-      // console.log(specificTitleClass);
-for (let index = 0; index < mainArr.length; index++) {
-  let row=rows.childNodes[index];
-  console.log("row"+row);
-  const relevantCell=row.getElementsByClassName(`${specificTitleClass}`);
-  console.log("relevantCell"+relevantCell);
-  if( specificTitleClass === relevantCell.className){ tempArr.push(relevantCell);
-    console.log("relevantCell:"+relevantCell);
-    }
-}
-      
-      // forEach((row) => {
-      //   const relevantCell=row.getElementsByClassName(`${specificTitleClass}`);
-      //   console.log("relevantCell"+relevantCell);
-      //   children=[...row.children];
-      //   children.forEach(
-      //   ((column) => {
-      //   // console.log(row);
-      //   if( specificTitleClass === column.className){ tempArr.push(column);
-      //   console.log("column:"+column);
-      //   }
-      //   // if(row.className===)
-      //   // console.log("***"+specificTitleClass);
-
-      //  }))
-      // });
+      for (let index = 0; index < mainArr.length; index++) {
+        let row = rows.childNodes[index];
+        console.log("row" + row);
+        const relevantCell = row.getElementsByClassName(
+          `${specificTitleClass}`
+        );
+        console.log("relevantCell" + relevantCell);
+        if (specificTitleClass === relevantCell.className) {
+          tempArr.push(relevantCell);
+          console.log("relevantCell:" + relevantCell);
+        }
+      }
       tempArr.sort();
-      // console.log(tempArr);
     });
+  });
+};
+
+const search = (event) => {
+  const optionValue = document.getElementsByTagName("select");
+  optionValue.option.children[0].getAttribute("selected") == true;
+  const typedValue = event.target.value;
+};
+
+const restart = () => {
+  restartButton = document.querySelector(".restart");
+  restartButton.setEventListener("click", () => {
+    const table = document.querySelector(".table");
+    const tableRows = table.children;
+    for (let i = 1; i < tableRows.length; i++) {
+      tableRows.removeChild(tableRows[i]);
+    }
+    paintPage();
   });
 };
